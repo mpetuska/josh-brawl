@@ -37,7 +37,7 @@ jobs:
         with:
           max_attempts: 3
           timeout_minutes: 30
-          command: ./gradlew browserProductionExecutable --info
+          command: ./gradlew browserDistribution --info
       - uses: crazy-max/ghaction-github-pages@v2
         with:
           target_branch: gh-pages
