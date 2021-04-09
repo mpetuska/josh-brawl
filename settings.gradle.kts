@@ -1,18 +1,18 @@
 import de.fayard.refreshVersions.bootstrapRefreshVersions
 
 pluginManagement {
-  repositories {
-    gradlePluginPortal()
-    mavenCentral()
-  }
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
 }
 
 buildscript {
-  repositories {
-    gradlePluginPortal()
-    mavenCentral()
-  }
-  dependencies { classpath("de.fayard.refreshVersions:refreshVersions:0.9.7") }
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+    dependencies { classpath("de.fayard.refreshVersions:refreshVersions:0.9.7") }
 }
 bootstrapRefreshVersions()
 
