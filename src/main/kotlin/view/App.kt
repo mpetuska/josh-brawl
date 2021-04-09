@@ -59,7 +59,7 @@ fun RenderContext.App() {
                 items {
                     img {
                         height(600)
-                        src("/proof.jpg")
+                        src("proof.jpg")
                     }
                     iframe {
                         allowFullscreen(true)
