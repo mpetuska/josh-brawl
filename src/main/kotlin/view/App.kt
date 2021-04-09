@@ -58,7 +58,7 @@ fun RenderContext.App() {
             lineUp {
                 items {
                     img {
-                        height(600)
+                        attr("style", "height: 600px")
                         src("proof.jpg")
                     }
                     iframe {
