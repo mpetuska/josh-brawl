@@ -50,7 +50,7 @@ fun RenderContext.App() {
                     year = 2021,
                     month = Month.APRIL,
                     dayOfMonth = 24,
-                    hours = 0,
+                    hours = 12,
                     minutes = 0,
                     seconds = 0
                 )
