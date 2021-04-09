@@ -1,0 +1,46 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+  release:
+    types: [ created ]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Restore Gradle cache
+        id: cache
+        uses: actions/cache@v2.1.4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.gradle/yarn
+            ~/.gradle/nodejs
+            ~/.konan
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: 11
+      - uses: nick-invision/retry@v2
+        name: Build
+        env:
+          JVM_ARGS: -XX:MaxMetaspaceSize=2g
+        with:
+          max_attempts: 3
+          timeout_minutes: 30
+          command: ./gradlew browserProductionExecutable --info
+      - uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: build/distributions
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
